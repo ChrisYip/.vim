@@ -104,7 +104,11 @@ Plugin 'kchmck/vim-coffee-script'
 Plugin 'jade.vim'
 Plugin 'genoma/vim-less'
 Plugin 'mattn/emmet-vim'
-Plugin 'lepture/vim-css'
+Plugin 'groenewege/vim-less'
+Plugin 'jelera/vim-javascript-syntax'
+Plugin 'elzr/vim-json'
+
+Plugin 'plasticboy/vim-markdown'
 
 " set theme & highlight
 syntax on
@@ -112,14 +116,9 @@ set background=light
 colorscheme solarized
 
 " Set syntax for specify format
-set ft=txt
-au BufWinEnter *.vb set ft=vbnet
-au BufWinEnter *.aspx set ft=html
+set ft=markdown
 au BufWinEnter *.txt set ft=txt
-au BufRead,BufNewFile *.js set ft=javascript syntax=jquery
-au BufRead,BufNewFile *.json set filetype=javascript
-au BufRead,BufNewFile w,*.mediawiki set filetype=mediawiki
-au BufNewFile,BufRead *  setfiletype txt
+au BufNewFile,BufRead *  setfiletype markdown
 
 " set case sensitive
 set ignorecase smartcase
@@ -202,3 +201,6 @@ set laststatus=2
 
 " Remove trailing whitespace on saves
 autocmd BufWritePre *.* :%s/\s\+$//e
+
+# JavaScript Plugin
+au FileType javascript call JavaScriptFold()
