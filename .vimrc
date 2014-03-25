@@ -202,5 +202,5 @@ set laststatus=2
 " Remove trailing whitespace on saves
 autocmd BufWritePre *.* :%s/\s\+$//e
 
-# JavaScript Plugin
+" JavaScript Plugin
 au FileType javascript call JavaScriptFold()
