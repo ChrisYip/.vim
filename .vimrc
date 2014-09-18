@@ -69,8 +69,6 @@ language messages en_US.utf-8
 " set compatibility with vi
 set nocompatible
 
-filetype off
-
 " Vundle
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/vundle/
@@ -120,7 +118,7 @@ colorscheme solarized
 " Set syntax for specify format
 set ft=markdown
 au BufWinEnter *.txt set ft=txt
-au BufNewFile,BufRead *  setfiletype markdown
+au BufNewFile,BufRead * setfiletype markdown
 
 " set case sensitive
 set ignorecase smartcase
@@ -193,9 +191,6 @@ nnoremap <leader>nt :NERDTree<cr>
 nnoremap <f5> :GundoToggle<cr>
 " sessions
 nnoremap <leader>mks :mksession!
-
-" Remove trailing whitespace on saves
-autocmd BufWritePre *.* :%s/\s\+$//e
 
 " ariline
 let g:airline#extensions#tabline#enabled = 1
