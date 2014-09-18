@@ -84,7 +84,7 @@ Plugin 'editorconfig/editorconfig-vim'
 Plugin 'Raimondi/delimitMate'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'SudoEdit.vim'
-Plugin 'Lokaltog/vim-powerline'
+Plugin 'bling/vim-airline'
 Plugin 'scrooloose/nerdtree'
 Plugin 'Gundo'
 Plugin 'FuzzyFinder'
@@ -136,10 +136,6 @@ set vb t_vb=
 " set auto backup for work's files
 set nobackup
 set backupext=.bak
-
-" 关闭/打开文档自动保存/打开折叠
-"au BufWinLeave *.php,*.asp,*.jsp,*.wml,*.htm,*.html,*.css,*.js,*.tpl,*.java mkview
-"au BufWinEnter *.php,*.asp,*.jsp,*.wml,*.htm,*.html,*.css,*.js,*.tpl,*.java silent loadview
 
 " show last line but '@'
 set dy=lastline
@@ -198,9 +194,9 @@ nnoremap <f5> :GundoToggle<cr>
 " sessions
 nnoremap <leader>mks :mksession!
 
-" Powerline
-set laststatus=2
-
 " Remove trailing whitespace on saves
 autocmd BufWritePre *.* :%s/\s\+$//e
 
+" ariline
+let g:airline#extensions#tabline#enabled = 1
+set laststatus=2
