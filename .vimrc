@@ -88,7 +88,10 @@ Plugin 'Lokaltog/vim-powerline'
 Plugin 'scrooloose/nerdtree'
 Plugin 'Gundo'
 Plugin 'FuzzyFinder'
-Plugin 'Shougo/neocomplete.vim'
+if has('lua')
+  Bundle 'Shougo/neocomplete.vim'
+  let g:neocomplete#enable_at_startup = 1
+end
 Plugin 'sirver/ultisnips'
 
 " Git
@@ -104,7 +107,6 @@ Plugin 'kchmck/vim-coffee-script'
 Plugin 'jade.vim'
 Plugin 'genoma/vim-less'
 Plugin 'mattn/emmet-vim'
-Plugin 'groenewege/vim-less'
 Plugin 'jelera/vim-javascript-syntax'
 Plugin 'elzr/vim-json'
 
@@ -154,7 +156,6 @@ set tw=500
 " set indent
 set ai " auto indent
 set si " smart indent
-set nowrap " don't wrap lines
 
 " set cursor line highlight
 set nocursorline
@@ -191,6 +192,7 @@ nnoremap <leader>tl :tabn<cr>
 nnoremap <leader>th :tabp<cr>
 " nerdtree configuration
 nnoremap <f4> :NERDTree<cr>
+nnoremap <leader>nt :NERDTree<cr>
 " gundo configuration
 nnoremap <f5> :GundoToggle<cr>
 " sessions
@@ -202,5 +204,3 @@ set laststatus=2
 " Remove trailing whitespace on saves
 autocmd BufWritePre *.* :%s/\s\+$//e
 
-" JavaScript Plugin
-au FileType javascript call JavaScriptFold()
