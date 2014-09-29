@@ -3,7 +3,7 @@
 Vim scripts are mainained by [Vundle](https://github.com/gmarik/Vundle.vim).
 
 ```bash
-git clone git@github.com:ChrisYip/vim-config.git ~/.vim
+git clone https://github.com/chrisyip/vim-config.git ~/.vim
 cd ~/.vim
 ./install.sh
 ```
