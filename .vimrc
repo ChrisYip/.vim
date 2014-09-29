@@ -78,6 +78,11 @@ call vundle#rc()
 Plugin 'gmarik/vundle'
 
 Plugin 'L9'
+
+Plugin 'ctrlp.vim'
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'Raimondi/delimitMate'
 Plugin 'nathanaelkane/vim-indent-guides'
@@ -86,10 +91,12 @@ Plugin 'bling/vim-airline'
 Plugin 'scrooloose/nerdtree'
 Plugin 'Gundo'
 Plugin 'FuzzyFinder'
+
 if has('lua')
   Bundle 'Shougo/neocomplete.vim'
   let g:neocomplete#enable_at_startup = 1
 end
+
 Plugin 'sirver/ultisnips'
 
 " Git
