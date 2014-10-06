@@ -1,6 +1,6 @@
 " Global variables for environment
-let isMac = has("mac")
-let isWin = has("win32")
+let isMac = has('mac')
+let isWin = has('win32') || has ('win64')
 let isGui = has('gui_running')
 
 set guifont=Source_Code_Pro:h14
@@ -98,6 +98,11 @@ if has('lua')
 end
 
 Plugin 'sirver/ultisnips'
+Plugin 'honza/vim-snippets'
+let g:UltiSnipsExpandTrigger='<tab>'
+let g:UltiSnipsJumpForwardTrigger='<c-b>'
+let g:UltiSnipsJumpBackwardTrigger='<c-z>'
+let g:UltiSnipsEditSplit='vertical'
 
 " Git
 Plugin 'tpope/vim-fugitive'
@@ -112,19 +117,23 @@ Plugin 'kchmck/vim-coffee-script'
 Plugin 'jade.vim'
 Plugin 'genoma/vim-less'
 Plugin 'mattn/emmet-vim'
-Plugin 'jelera/vim-javascript-syntax'
+
+Plugin 'pangloss/vim-javascript'
+let javascript_enable_domhtmlcss=1
+
 Plugin 'elzr/vim-json'
 
+Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
+let g:vim_markdown_folding_disabled=1
 
 " set theme & highlight
 syntax on
 set background=light
 colorscheme solarized
 
-" Set syntax for specify format
 set ft=markdown
-au BufWinEnter *.txt set ft=txt
+au BufWinEnter *.txt set ft=markdown
 au BufNewFile,BufRead * setfiletype markdown
 
 " set case sensitive
@@ -160,9 +169,6 @@ set si " smart indent
 
 " set cursor line highlight
 set nocursorline
-
-" autocomplpro settings
-let g:acp_mappingDriven = 1
 
 "key mapping
 nmap <F2> :nohls <CR>
