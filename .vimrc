@@ -86,10 +86,10 @@ let g:ctrlp_cmd = 'CtrlP'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'Raimondi/delimitMate'
 Plugin 'nathanaelkane/vim-indent-guides'
-Plugin 'SudoEdit.vim'
+Plugin 'chrisbra/SudoEdit.vim'
 Plugin 'bling/vim-airline'
 Plugin 'scrooloose/nerdtree'
-Plugin 'Gundo'
+Plugin 'sjl/gundo.vim'
 Plugin 'FuzzyFinder'
 
 if has('lua')
@@ -114,7 +114,7 @@ Plugin 'altercation/vim-colors-solarized'
 
 " Front-end
 Plugin 'kchmck/vim-coffee-script'
-Plugin 'jade.vim'
+Plugin 'digitaltoad/vim-jade'
 Plugin 'genoma/vim-less'
 Plugin 'mattn/emmet-vim'
 
