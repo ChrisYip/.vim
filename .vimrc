@@ -61,27 +61,30 @@ set nu
 set hls
 
 " When vimrc is edited, reload it
-autocmd! bufwritepost vimrc source $MYVIMRC
+au! bufwritepost vimrc source % 
 
 " Correct console's encoding
 language messages en_US.utf-8
 
-" set compatibility with vi
+" Vundle setup
 set nocompatible
+filetype off
 
 " Vundle
 " set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim/
+call vundle#begin()
 
 " let Vundle manage Vundle, required
-Plugin 'gmarik/vundle'
+Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'L9'
 
-Plugin 'ctrlp.vim'
+Plugin 'kien/ctrlp.vim'
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
+" Respect .gitignore
+let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'Raimondi/delimitMate'
@@ -90,12 +93,13 @@ Plugin 'chrisbra/SudoEdit.vim'
 Plugin 'bling/vim-airline'
 Plugin 'scrooloose/nerdtree'
 Plugin 'sjl/gundo.vim'
-Plugin 'FuzzyFinder'
 
 if has('lua')
   Bundle 'Shougo/neocomplete.vim'
   let g:neocomplete#enable_at_startup = 1
 end
+
+Plugin 'scrooloose/nerdcommenter'
 
 Plugin 'sirver/ultisnips'
 Plugin 'honza/vim-snippets'
@@ -111,6 +115,7 @@ Plugin 'airblade/vim-gitgutter'
 
 " Theme
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'w0ng/vim-hybrid'
 
 " Front-end
 Plugin 'kchmck/vim-coffee-script'
@@ -127,20 +132,27 @@ Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
 let g:vim_markdown_folding_disabled=1
 
+Plugin 'scrooloose/syntastic'
+
+call vundle#end()
+
+filetype plugin indent on
+
 " set theme & highlight
 syntax on
-set background=light
-colorscheme solarized
 
-set ft=markdown
+if isGui
+  colorscheme hybrid
+else
+  colorscheme slate
+endif
+
+au BufEnter * if &filetype == "" | setlocal ft=markdown | endif
 au BufWinEnter *.txt set ft=markdown
 au BufNewFile,BufRead * setfiletype markdown
 
 " set case sensitive
 set ignorecase smartcase
-
-" Enable filetype plugin
-filetype plugin indent on
 
 " No sound on errors
 set noerrorbells
@@ -181,15 +193,18 @@ command! -nargs=* -bar -bang -count=0 -complete=dir E Explore <args>
 " like <leader>w saves the current file
 let mapleader = ","
 let g:mapleader = ","
+
 nnoremap <leader>q :q<cr>
-nnoremap <leader>c :close<cr>
 nnoremap <leader>ig gg=G<cr>
+
 " file configuration
-nnoremap <leader>e :edit
+nnoremap <leader>e :edit 
 nnoremap <leader>w :w!<cr>
 nnoremap <leader><s-w> :w
+
 " switch to the directory of the open buffer
 nnoremap <leader>cd :cd %:p:h<cr>
+
 " tab configuration
 nnoremap <leader>tn :tabnew<cr>
 nnoremap <leader>te :tabedit
@@ -197,11 +212,14 @@ nnoremap <leader>tc :tabclose<cr>
 nnoremap <leader>tm :tabmove
 nnoremap <leader>tl :tabn<cr>
 nnoremap <leader>th :tabp<cr>
+
 " nerdtree configuration
 nnoremap <f4> :NERDTree<cr>
 nnoremap <leader>nt :NERDTree<cr>
+
 " gundo configuration
 nnoremap <f5> :GundoToggle<cr>
+
 " sessions
 nnoremap <leader>mks :mksession!
 
