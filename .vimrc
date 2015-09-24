@@ -86,6 +86,8 @@ let g:ctrlp_cmd = 'CtrlP'
 " Respect .gitignore
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 
+Plugin 'FelikZ/ctrlp-py-matcher'
+
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'Raimondi/delimitMate'
 Plugin 'nathanaelkane/vim-indent-guides'
