@@ -85,16 +85,18 @@ let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 " Respect .gitignore
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+let g:ctrlp_custom_ignore = '\v\.(png|jpe?g|gif|mp3|mp4|app|dmg|zip|swp|so)$'
 
 Plugin 'FelikZ/ctrlp-py-matcher'
 
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'Raimondi/delimitMate'
-Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'chrisbra/SudoEdit.vim'
 Plugin 'bling/vim-airline'
 Plugin 'scrooloose/nerdtree'
 Plugin 'sjl/gundo.vim'
+Plugin 'dkprice/vim-easygrep'
+Plugin 'Yggdroot/indentLine'
 
 if has('lua')
   Bundle 'Shougo/neocomplete.vim'
@@ -182,7 +184,8 @@ set ai " auto indent
 set si " smart indent
 
 " set cursor line highlight
-set nocursorline
+au InsertEnter * set cul
+au InsertLeave * set nocul
 
 "key mapping
 nmap <F2> :nohls <CR>
@@ -209,7 +212,7 @@ nnoremap <leader>cd :cd %:p:h<cr>
 
 " tab configuration
 nnoremap <leader>tn :tabnew<cr>
-nnoremap <leader>te :tabedit
+nnoremap <leader>te :tabedit 
 nnoremap <leader>tc :tabclose<cr>
 nnoremap <leader>tm :tabmove
 nnoremap <leader>tl :tabn<cr>
