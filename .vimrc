@@ -3,7 +3,7 @@ let isMac = has('mac')
 let isWin = has('win32') || has ('win64')
 let isGui = has('gui_running')
 
-set guifont=Source_Code_Pro:h14
+set guifont=Source_Code_Pro:h15
 
 if isWin
     " make correct encoding for menu
@@ -80,14 +80,18 @@ Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'L9'
 
-Plugin 'kien/ctrlp.vim'
+Plugin 'tpope/vim-surround'
+
+Plugin 'ctrlpvim/ctrlp.vim'
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 " Respect .gitignore
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 let g:ctrlp_custom_ignore = '\v\.(png|jpe?g|gif|mp3|mp4|app|dmg|zip|swp|so)$'
-
-Plugin 'FelikZ/ctrlp-py-matcher'
+let g:ctrlp_prompt_mappings = {
+  \ 'AcceptSelection("e")': ['<c-t>'],
+  \ 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'],
+  \ }
 
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'Raimondi/delimitMate'
@@ -101,6 +105,7 @@ Plugin 'Yggdroot/indentLine'
 if has('lua')
   Bundle 'Shougo/neocomplete.vim'
   let g:neocomplete#enable_at_startup = 1
+  let g:neocomplete#enable_auto_select = 1
 end
 
 Plugin 'scrooloose/nerdcommenter'
@@ -119,24 +124,41 @@ Plugin 'airblade/vim-gitgutter'
 
 " Theme
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'joshdick/onedark.vim'
+set background=dark
 Plugin 'w0ng/vim-hybrid'
 
 " Front-end
 Plugin 'kchmck/vim-coffee-script'
-Plugin 'digitaltoad/vim-jade'
+" Plugin 'digitaltoad/vim-jade'
+Plugin 'digitaltoad/vim-pug'
 Plugin 'genoma/vim-less'
+Plugin 'wavded/vim-stylus'
 Plugin 'mattn/emmet-vim'
+Plugin 'posva/vim-vue'
+Plugin 'mxw/vim-jsx'
+" JSDoc highlight
+Plugin 'othree/jsdoc-syntax.vim'
 
 Plugin 'pangloss/vim-javascript'
 let javascript_enable_domhtmlcss=1
+Plugin 'isRuslan/vim-es6'
 
 Plugin 'elzr/vim-json'
+
+" Open file base on node's require('module_name')
+Plugin 'moll/vim-node'
 
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
 let g:vim_markdown_folding_disabled=1
 
 Plugin 'scrooloose/syntastic'
+let g:syntastic_javascript_checkers = ['eslint']
+
+Plugin 'gosukiwi/vim-atom-dark'
+
+Plugin 'rust-lang/rust.vim'
 
 call vundle#end()
 
@@ -146,9 +168,9 @@ filetype plugin indent on
 syntax on
 
 if isGui
-  colorscheme hybrid
+  colorscheme onedark
 else
-  colorscheme slate
+  colorscheme onedark
 endif
 
 au BufEnter * if &filetype == "" | setlocal ft=markdown | endif
@@ -206,6 +228,7 @@ nnoremap <leader>ig gg=G<cr>
 nnoremap <leader>e :edit 
 nnoremap <leader>w :w!<cr>
 nnoremap <leader><s-w> :w
+nnoremap <leader>cp :close<cr>
 
 " switch to the directory of the open buffer
 nnoremap <leader>cd :cd %:p:h<cr>
